@@ -6,11 +6,12 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	api "github.com/nicolas-camacho/phrase_api/api"
 	database "github.com/nicolas-camacho/phrase_api/database"
 )
 
 func main() {
-	_, err := database.Connect()
+	db, err := database.Connect()
 	if err != nil {
 		panic(err)
 	}
@@ -32,6 +33,8 @@ func main() {
 	app.Get("/", func(context *fiber.Ctx) error {
 		return context.SendString("Welcome to Phrase API")
 	})
+
+	api.NewRouter(app, db)
 
 	app.Listen(":3000")
 }

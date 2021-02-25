@@ -7,27 +7,28 @@ type PhraseService interface {
 	ObtainPhrase() (*Phrase, error)
 }
 
-// Service struct handles phrase business logic tasks.
-type Service struct {
+type service struct {
 	repository PhraseRepository
 }
 
 //CreatePhrase is used to create a phrase in the repository
-func (service *Service) CreatePhrase(phrase *Phrase) (*Phrase, error) {
+func (service *service) CreatePhrase(phrase *Phrase) (*Phrase, error) {
 	return service.repository.CreatePhrase(phrase)
 }
 
 //ReadPhrase is used to get a single phrase by id from the repository
-func (service *Service) ReadPhrase(id int) (*Phrase, error) {
+func (service *service) ReadPhrase(id int) (*Phrase, error) {
 	return service.repository.ReadPhrase(id)
 }
 
 //ObtainPhrase is used to get a singles random phrase from the repository
-func (service *Service) ObtainPhrase() (*Phrase, error) {
+func (service *service) ObtainPhrase() (*Phrase, error) {
 	return service.repository.ObtainPhrase()
 }
 
 //NewService is used to create a single instance of the service
-func NewService(repository PhraseRepository) *Service {
-	return &Service{repository: repository}
+func NewService(repository PhraseRepository) PhraseService {
+	return &service{
+		repository: repository,
+	}
 }

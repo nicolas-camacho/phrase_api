@@ -16,8 +16,8 @@ type Repository struct {
 	db *gorm.DB
 }
 
-//New is use to create an instance of the repository to interact with the database
-func New(db *gorm.DB) *Repository {
+//NewRepository is use to create an instance of the repository to interact with the database
+func NewRepository(db *gorm.DB) *Repository {
 	db.AutoMigrate(&Phrase{})
 
 	return &Repository{
