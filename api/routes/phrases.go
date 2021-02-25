@@ -12,7 +12,8 @@ func PhrasesRouter(app fiber.Router, service phrases.PhraseService) {
 	phrasesRouter := app.Group("/phrases")
 
 	phrasesRouter.Post("/", addPhrase(service))
-	phrasesRouter.Get("/", getRandomPhrase(service))
+	phrasesRouter.Get("/", getPhrases(service))
+	phrasesRouter.Get("/random", getRandomPhrase(service))
 	phrasesRouter.Get("/:id", getPhrase(service))
 }
 
@@ -27,6 +28,16 @@ func addPhrase(service phrases.PhraseService) fiber.Handler {
 			return context.Status(fiber.StatusInternalServerError).SendString(dberr.Error())
 		}
 		return context.Status(fiber.StatusCreated).JSON(response)
+	}
+}
+
+func getPhrases(service phrases.PhraseService) fiber.Handler {
+	return func(context *fiber.Ctx) error {
+		response, dberr := service.ReadPhrases()
+		if dberr != nil {
+			return context.Status(fiber.StatusInternalServerError).SendString(dberr.Error())
+		}
+		return context.Status(fiber.StatusOK).JSON(response)
 	}
 }
 

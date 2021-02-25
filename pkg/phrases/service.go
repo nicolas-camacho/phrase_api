@@ -4,6 +4,7 @@ package phrases
 type PhraseService interface {
 	CreatePhrase(*Phrase) (*Phrase, error)
 	ReadPhrase(id int) (*Phrase, error)
+	ReadPhrases() (*[]Phrase, error)
 	ObtainPhrase() (*Phrase, error)
 }
 
@@ -14,6 +15,11 @@ type service struct {
 //CreatePhrase is used to create a phrase in the repository
 func (service *service) CreatePhrase(phrase *Phrase) (*Phrase, error) {
 	return service.repository.CreatePhrase(phrase)
+}
+
+//ReadPhrases is used to get all the phrases from the repository
+func (service *service) ReadPhrases() (*[]Phrase, error) {
+	return service.repository.ReadPhrases()
 }
 
 //ReadPhrase is used to get a single phrase by id from the repository

@@ -8,6 +8,7 @@ import (
 type PhraseRepository interface {
 	CreatePhrase(*Phrase) (*Phrase, error)
 	ReadPhrase(int) (*Phrase, error)
+	ReadPhrases() (*[]Phrase, error)
 	ObtainPhrase() (*Phrase, error)
 }
 
@@ -43,6 +44,17 @@ func (repository *Repository) ReadPhrase(id int) (*Phrase, error) {
 	}
 
 	return phrase, nil
+}
+
+//ReadPhrases is used to get all the phrases from the database
+func (repository *Repository) ReadPhrases() (*[]Phrase, error) {
+	phrases := &[]Phrase{}
+
+	if query := repository.db.Find(phrases); query.Error != nil {
+		return nil, query.Error
+	}
+
+	return phrases, nil
 }
 
 //ObtainPhrase is used to obtain a random phrase from the database
