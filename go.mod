@@ -1,10 +1,11 @@
 module github.com/nicolas-camacho/phrase_api
 
+// +heroku goVersion go1.16
 go 1.16
 
 require (
 	github.com/andybalholm/brotli v1.0.1 // indirect
-	github.com/gofiber/fiber/v2 v2.5.0 // indirect
+	github.com/gofiber/fiber/v2 v2.5.0
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
 	github.com/klauspost/compress v1.11.7 // indirect
 	github.com/lib/pq v1.6.0 // indirect
@@ -13,6 +14,6 @@ require (
 	golang.org/x/sys v0.0.0-20210223212115-eede4237b368 // indirect
 	golang.org/x/text v0.3.5 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	gorm.io/driver/postgres v1.0.8 // indirect
-	gorm.io/gorm v1.20.12 // indirect
+	gorm.io/driver/postgres v1.0.8
+	gorm.io/gorm v1.20.12
 )
