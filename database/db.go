@@ -1,13 +1,21 @@
 package database
 
 import (
+	"fmt"
+	"os"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 //Connect to a database handle from a connection string
 func Connect() (*gorm.DB, error) {
-	dsn := "host=localhost user=nicolascamacho password=tiempo18 dbname=phrases_db port=5432 sslmode=disable"
+	host := os.Getenv("DBHOST")
+	port := os.Getenv("DBPORT")
+	user := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASSWORD")
+	dbname := os.Getenv("DBNAME")
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err

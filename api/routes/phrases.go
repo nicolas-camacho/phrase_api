@@ -9,8 +9,11 @@ import (
 
 //PhrasesRouter is use to set the routes of the phrase service
 func PhrasesRouter(app fiber.Router, service phrases.PhraseService) {
-	app.Post("/phrases", addPhrase(service))
-	app.Get("/phrases/:id", getPhrase(service))
+	phrasesRouter := app.Group("/phrases")
+
+	phrasesRouter.Post("/", addPhrase(service))
+	phrasesRouter.Get("/", getRandomPhrase(service))
+	phrasesRouter.Get("/:id", getPhrase(service))
 }
 
 func addPhrase(service phrases.PhraseService) fiber.Handler {
@@ -34,6 +37,16 @@ func getPhrase(service phrases.PhraseService) fiber.Handler {
 			return context.Status(fiber.StatusBadRequest).SendString("Invalid Id")
 		}
 		response, dberr := service.ReadPhrase(requestedID)
+		if dberr != nil {
+			return context.Status(fiber.StatusInternalServerError).SendString(dberr.Error())
+		}
+		return context.Status(fiber.StatusOK).JSON(response)
+	}
+}
+
+func getRandomPhrase(service phrases.PhraseService) fiber.Handler {
+	return func(context *fiber.Ctx) error {
+		response, dberr := service.ObtainPhrase()
 		if dberr != nil {
 			return context.Status(fiber.StatusInternalServerError).SendString(dberr.Error())
 		}

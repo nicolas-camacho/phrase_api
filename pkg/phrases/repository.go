@@ -49,7 +49,7 @@ func (repository *Repository) ReadPhrase(id int) (*Phrase, error) {
 func (repository *Repository) ObtainPhrase() (*Phrase, error) {
 	phrase := &Phrase{}
 
-	if query := repository.db.Order("RAMDOM()").First(phrase); query.Error != nil {
+	if query := repository.db.Order("RANDOM()").First(phrase); query.Error != nil {
 		return nil, query.Error
 	}
 
