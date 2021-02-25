@@ -1,0 +1,33 @@
+{{define "index"}}
+{{template "header" .}}
+
+<div class="top-bar"></div>
+<div class="appbar">
+    <div class="home-icon">
+        <a href="/" class="icon">
+            <h2 class="font-sans title">
+                <span class="title-texts" style="background-color: #CEA8FF; color: #000;">PHRASE</span>
+                .
+                <span class="title-texts" style="background-color: #000; color: #fff;">APP</span>
+            </h2>
+        </a>
+        <p class="font-mono subtitle">Hope you are doing well</p>
+    </div>
+</div>
+<div class="content">
+    <div class="main">
+        <h1 class="font-sans" style="font-size: 50px;">Hola {{.Name}}</h1>
+        <div class="ticket">
+            <div class="identificator">
+                <h3 class="font-sans numerator">No.</h3>
+                <h1 class="font-sans" style="font-size: 70px; font-weight: 900;">{{.Id}}</h1>
+            </div>
+            <div class="phrase">
+                <h2 class="font-mono">"Esta es una frase extra larga para probar como se expande el div"</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ template "footer" .}}
+{{end}}

@@ -1,0 +1,118 @@
+.container {
+    background-color: #F5F6F7;
+}
+
+.font-mono {
+    font-family: 'Source Code Pro', monospace;
+}
+
+.font-sans {
+    font-family: 'Inter', sans-serif;
+}
+
+.top-bar {
+    height: 10px;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%; 
+}
+
+.appbar {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (max-width: 620px) {
+    .appbar {
+        display: grid;
+        place-items: center;
+    }
+}
+
+.home-icon {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.title {
+    display: inline-block;
+    padding-left: .75rem;
+    padding-right: .75rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 5px;
+}
+
+.title-texts {
+    padding-left: .25rem;
+    padding-right: .25rem;
+}
+
+.subtitle {
+    color: #718196;
+    margin: 0;
+}
+
+.content {
+    display: grid;
+    place-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.ticket {
+    background-color: #ffffff;
+    display: flex;
+    border-radius: 5px;
+    box-shadow:
+        0 12.5px 10px rgba(0, 0, 0, 0.04),
+        0 100px 80px rgba(0, 0, 0, 0.08);
+}
+
+.ticket > div {
+    padding: 2rem;
+    max-width: 65rem;
+}
+
+.identificator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-right: dashed #DFE6EE;
+
+}
+
+.identificator > * {
+    margin: 0;
+}
+
+.numerator {
+    padding-left: .25rem;
+    padding-right: .25rem;
+    background-color: #CEA8FF; 
+    color: #000;
+}
+
+.phrase {
+    display: grid;
+    place-items: center;
+}
+
+.phrase > h2 {
+    font-size: 30px;
+}

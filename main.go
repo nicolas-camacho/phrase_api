@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/template/html"
 	api "github.com/nicolas-camacho/phrase_api/api"
 	database "github.com/nicolas-camacho/phrase_api/database"
 )
@@ -17,6 +18,8 @@ func main() {
 		panic(err)
 	}
 
+	engine := html.New("./templates", ".html")
+
 	app := fiber.New(fiber.Config{
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
 
@@ -26,14 +29,12 @@ func main() {
 
 			return errors.New("this is a managed error")
 		},
+		Views: engine,
 	})
 
 	app.Use(recover.New())
 	app.Use(logger.New())
-
-	app.Get("/", func(context *fiber.Ctx) error {
-		return context.SendString("Welcome to Phrase API")
-	})
+	app.Static("/static", "./static")
 
 	api.NewRouter(app, db)
 

@@ -6,6 +6,7 @@ go 1.16
 require (
 	github.com/andybalholm/brotli v1.0.1 // indirect
 	github.com/gofiber/fiber/v2 v2.5.0
+	github.com/gofiber/template v1.6.6
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
 	github.com/klauspost/compress v1.11.7 // indirect
 	github.com/lib/pq v1.6.0 // indirect
