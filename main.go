@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -36,5 +37,5 @@ func main() {
 
 	api.NewRouter(app, db)
 
-	app.Listen(":3000")
+	app.Listen(":" + os.Getenv("PORT"))
 }
